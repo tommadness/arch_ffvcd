@@ -117,16 +117,13 @@ class FFVCDWorld(World):
                         self.player, ['World Access'])
             self.starting_items[new_item] = 1
             self.multiworld.push_precollected(new_item)
-
             
     def create_item(self, name: str):
         item_data = item_table[name]
         return create_item(name, item_data.classification, item_data.id, self.player, item_data.groups)
 
-
     def get_filler_item_name(self):
         return self.random.choice([*item_groups[ITEM_CODE_FUNGIBLE], *item_groups[ITEM_CODE_GIL]])
-
 
     def create_items(self):
         
@@ -240,7 +237,6 @@ class FFVCDWorld(World):
             state = self.multiworld.get_all_state(False)
             fill_restrictive(self.multiworld, state, self.chosen_mib_locations, self.mib_items_to_place,
                                single_player_placement=True, lock=True, allow_excluded=True)
-        
 
     def create_regions(self):
         create_regions(self.multiworld, self.player)
@@ -358,6 +354,5 @@ class FFVCDWorld(World):
             new_name = base64.b64encode(bytes(self.rom_name)).decode()
             multidata["connect_names"][new_name] = multidata["connect_names"][self.multiworld.player_name[self.player]]
             
-        
     def write_spoiler(self, spoiler_handle) -> None:
         spoiler_handle.write(self.cond.spoiler)
