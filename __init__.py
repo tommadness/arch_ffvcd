@@ -1,22 +1,24 @@
 import os
 import threading
 import base64
+from typing import ClassVar
 from BaseClasses import MultiWorld, Tutorial, ItemClassification
 from worlds.AutoWorld import World, WebWorld
 from .items import item_table, item_groups, create_item, create_world_items, arch_item_offset, \
-    WORLD2_ACCESS_ITEM_ID, WORLD3_ACCESS_ITEM_ID, ITEM_CODE_GIL
+    WORLD2_ACCESS_ITEM_ID, WORLD3_ACCESS_ITEM_ID, ITEM_CODE_GIL, ITEM_CODE_FUNGIBLE
 from .locations import location_data, loc_id_start
 from .options import ffvcd_options
 from .regions import create_regions
 from .rules import set_rules
-from worlds.ffvcd.ffvcd_arch.utilities.data import conductor
-from worlds.ffvcd.ffvcd_arch.utilities.data import collectible
+from .ffvcd_arch.utilities.data import conductor
+from .ffvcd_arch.utilities.data import collectible
 from .client import FFVCDSNIClient
-from .rom import LocalRom, get_base_rom_path, patch_rom, FFVCDDeltaPatch
+from .rom import LocalRom, get_base_rom_path, patch_rom, FFVCDDeltaPatch, USHASH
 from collections import Counter
 import shutil
 import logging
 import pkgutil
+import settings
 from Fill import fill_restrictive
 
 logger = logging.getLogger("Final Fantasy V Career Day")
@@ -24,6 +26,15 @@ logger = logging.getLogger("Final Fantasy V Career Day")
 THIS_FILEPATH = os.path.dirname(__file__)
 
 # lots of credit to others in the repository, such as pokemonrb, dkc3 and tloz
+
+class FFVCDSettings(settings.Group):
+    class RomFile(settings.SNESRomPath):
+        """File name of the FFV J(1.0) rom with RPGe patch applied"""
+        description = "Final Fantasy V ROM File"
+        copy_to = "Final Fantasy V (J).sfc"
+        md5s = [USHASH]
+
+    rom_file: RomFile = RomFile(RomFile.copy_to)
 
 class FFVCDWebWorld(WebWorld):
     setup_en = Tutorial(
@@ -46,7 +57,7 @@ class FFVCDWorld(World):
     options_dataclass = ffvcd_options
     options: ffvcd_options
 
-    settings: None
+    settings: ClassVar[FFVCDSettings]
     
     
     topology_present = False
@@ -82,7 +93,6 @@ class FFVCDWorld(World):
             cls.rom_file = rom_file
             cls.source_rom_abs_path = os.path.abspath(Utils.user_path(rom_file))
 
-
     def generate_early(self):
         self.starting_items = Counter()
         self.world_lock = self.options.world_lock.value + 1
@@ -109,7 +119,13 @@ class FFVCDWorld(World):
             self.multiworld.push_precollected(new_item)
 
             
+    def create_item(self, name: str):
+        item_data = item_table[name]
+        return create_item(name, item_data.classification, item_data.id, self.player, item_data.groups)
 
+
+    def get_filler_item_name(self):
+        return self.random.choice([*item_groups[ITEM_CODE_FUNGIBLE], *item_groups[ITEM_CODE_GIL]])
 
 
     def create_items(self):
