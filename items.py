@@ -171,13 +171,17 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
     unavailable_job_groups = []
     starting_job_groups = []
     initial_job_list = []
+    shuffled_job_list = []
 
 
     for job_name in job_selection_dict:
         if job_name in world.options.jobs_included:
             initial_job_list.append(job_selection_dict[job_name])
     world.random.shuffle(initial_job_list)
-    shuffled_job_list = list(initial_job_list)
+    # This method of assignment guarantees that new memory is allocated for the shuffled list 
+    # instead of initial job list and shuffled job list pointing to the same memory
+    for job in initial_job_list:
+        shuffled_job_list.append(job)
     job_count = len(initial_job_list)
 
     ###############
@@ -312,7 +316,7 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
             item_groups = getattr(item,'groups')
             for group in [i for i in item_groups if i in initial_job_list]:
                 placed_job_group_list.append(group)
-
+        
         for group in [i for i in available_job_groups if i in initial_job_list]:
                 placed_job_group_list.append(group)
 
@@ -390,6 +394,10 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
                                                     world.player, item_data.groups)
                 
             placed_items.append(new_item)
+
+            if len(placed_items) + len(mib_items_to_place) >= len(locations_this_world) - len(event_table):
+                break
+
         item_count_to_place -= filler_count
 
     world.random.shuffle(placed_items)

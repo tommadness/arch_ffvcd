@@ -130,7 +130,7 @@ class RandomJobCount(Range):
     This setting only applies when "Four Job Mode" is off.
     """
     display_name = "Job Crystals Available"
-    range_start = 1
+    range_start = 4
     range_end = 22
     default = 22
 
@@ -139,7 +139,7 @@ class AbilitySettings(Choice):
     All job abilities from "Job and Groups in World" list are placed by default.
     
     Only for Available Jobs: Places only abilities for whichever jobs crystals are in the world
-    (controlled by the Jobs Available and "Job and Groups in World" setting or Four Job Mode).
+    (controlled by the Jobs Available and "Job and Groups in World" setting or "Four Job Mode").
 
     Available Jobs Plus Extra: Places abilities for whichever job crystals are in the world plus a small amount extra, 
     controlled by the "Job Group Abilities Number" setting.
@@ -175,7 +175,7 @@ class JobGroupAbilitiesNumber(Range):
     If this number plus "Job Crystals Available" exceeds items in "Job and Groups in World" then it will place all from "Job and Groups in World" list.
     """
     display_name = "Job Group Abilities Number"
-    range_start = 1
+    range_start = 4
     range_end = 22
     default = 22
 
