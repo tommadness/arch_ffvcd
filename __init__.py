@@ -136,8 +136,8 @@ class FFVCDWorld(World):
                 locations_rank = [i for i2 in locations_rank for i in i2] # flatten
                 locations_rank = [i for i in locations_rank if i.location_data.location_type == LOC_TYPE_CHEST]
     
-                self.multiworld.per_slot_randoms[self.player].shuffle(locations_rank)
-                chosen_locations_rank = self.multiworld.per_slot_randoms[self.player].sample(locations_rank, min(3, len(locations_rank)))
+                self.random.shuffle(locations_rank)
+                chosen_locations_rank = self.random.sample(locations_rank, min(3, len(locations_rank)))
                 for i in chosen_locations_rank:
                     i.mib_flag = True
                     self.chosen_mib_locations.append(i)
@@ -253,7 +253,7 @@ class FFVCDWorld(World):
 
 
         
-        self.cond = conductor.Conductor(self.multiworld.per_slot_randoms[self.player], options_conductor, arch_data = data, \
+        self.cond = conductor.Conductor(self.random, options_conductor, arch_data = data, \
                                         player = self.player, seed = self.multiworld.seed, placed_crystals = self.placed_crystals,\
                                         placed_abilities = self.placed_abilities, placed_magic = self.placed_magic)
         self.cond.randomize()

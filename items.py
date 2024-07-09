@@ -145,7 +145,7 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
         for k, v in mib_item_data.items():
             mib_item_pool.append(create_item(k, v.classification, v.id, world.player, v.groups))
             
-        mib_items_to_place = world.multiworld.per_slot_randoms[world.player].sample(mib_item_pool, k=len(chosen_mib_locations))
+        mib_items_to_place = world.random.sample(mib_item_pool, k=len(chosen_mib_locations))
         for i in mib_items_to_place:
             if i.classification == ItemClassification.progression:
                 mib_key_item_excludes.append(i.name)
