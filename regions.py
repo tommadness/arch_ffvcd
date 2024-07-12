@@ -26,13 +26,6 @@ def setup_region_and_entrance(multiworld, player, region_name, parent_region_nam
         new_entrance.access_rule = access_rule
     parent_region.exits.append(new_entrance)
     multiworld.regions.append(new_region)
-    
-    
-    
-def has_magic_and_physical_jobs(player: int, state: CollectionState) -> bool:
-    return state.has_any({'Knight Crystal', 'Monk Crystal','Thief Crystal','Dragoon Crystal','Ninja Crystal','Samurai Crystal', \
-                          'Trainer Crystal','Chemist Crystal','Bard Crystal','Dancer Crystal','MysticKnight Crystal','Geomancer Crystal'}, player) and \
-            state.has_any({'WhiteMage Crystal','BlackMage Crystal','Summoner Crystal','BlueMage Crystal','RedMage Crystal'}, player)
 
 def create_regions(multiworld, player: int):
     menu_region = create_region(multiworld, player, 'Menu')
@@ -43,12 +36,12 @@ def create_regions(multiworld, player: int):
     setup_region_and_entrance(multiworld, player, "World 1 Access", "Crystal Warp", access_rule = None)
     setup_region_and_entrance(multiworld, player, "World 2 Access", "Crystal Warp", access_rule = \
                               lambda state: (state.has("Adamantite", player)) 
-                              or (state.has("World 2 Access (Item)", player)) and has_magic_and_physical_jobs(player, state))
+                              or (state.has("World 2 Access (Item)", player)))
     setup_region_and_entrance(multiworld, player, "World 3 Access", "Crystal Warp", access_rule = \
                               lambda state: ((state.has("Adamantite", player)\
                               and state.has("Bracelet", player)\
                               and state.has("Anti Barrier", player)))\
-                              or (state.has("World 3 Access (Item)", player)) and has_magic_and_physical_jobs(player, state))
+                              or (state.has("World 3 Access (Item)", player)))
 
 
     setup_region_and_entrance(multiworld, player, "Ancient Library", "World 1 Access", access_rule = None,
@@ -56,7 +49,7 @@ def create_regions(multiworld, player: int):
     setup_region_and_entrance(multiworld, player, "Ancient Library (World 3)", "World 3 Access", access_rule = None,
                               region_rank = 7)
     setup_region_and_entrance(multiworld, player, "Ancient Library Lower", "World 1 Access", access_rule =\
-                              lambda state: state.has("Ifrit's Fire", player) and has_magic_and_physical_jobs(player, state),
+                              lambda state: state.has("Ifrit's Fire", player),
                                                         region_rank = 4)
     setup_region_and_entrance(multiworld, player, "Bal Castle", "World 2 Access", access_rule = None,
                               region_rank = 5)
@@ -75,7 +68,7 @@ def create_regions(multiworld, player: int):
     setup_region_and_entrance(multiworld, player, "Crescent Island", "World 1 Access", access_rule = None,
                               region_rank = 5)
     setup_region_and_entrance(multiworld, player, "Desert of Shifting Sands", "World 1 Access", access_rule = \
-                              lambda state: state.has("SandwormBait", player) and has_magic_and_physical_jobs(player, state),
+                              lambda state: state.has("SandwormBait", player),
                                                         region_rank = 4)
     setup_region_and_entrance(multiworld, player, "Exdeath's Castle", "World 2 Access", access_rule = \
                               lambda state: state.has("Bracelet", player) and state.has("Anti Barrier", player),
@@ -84,7 +77,7 @@ def create_regions(multiworld, player: int):
                               lambda state: state.has("Anti Barrier", player),
                                                         region_rank = 6)
     setup_region_and_entrance(multiworld, player, "Flying Lonka Ruins", "World 1 Access", access_rule =\
-                              lambda state: state.has("Adamantite", player) and has_magic_and_physical_jobs(player, state),
+                              lambda state: state.has("Adamantite", player),
                                                         region_rank = 5)
     setup_region_and_entrance(multiworld, player, "Fork Tower", "World 3 Access", access_rule = \
                               lambda state: state.has("Elder Branch", player),
@@ -103,8 +96,9 @@ def create_regions(multiworld, player: int):
                                                         region_rank = 8)
     setup_region_and_entrance(multiworld, player, "Jacole", "World 1 Access", access_rule = None,
                               region_rank = 5)
+    setup_region_and_entrance(multiworld, player, "Karnak (On Fire)", "World 1 Access", access_rule = None)
     setup_region_and_entrance(multiworld, player, "Karnak", "World 1 Access", access_rule = \
-                              lambda state: state.has("Steamship Key", player) and has_magic_and_physical_jobs(player, state),
+                              lambda state: state.has("Steamship Key", player),
                                                         region_rank = 3)
     setup_region_and_entrance(multiworld, player, "Karnak Meteor", "World 1 Access", access_rule = None,
                               region_rank = 3)
@@ -174,7 +168,7 @@ def create_regions(multiworld, player: int):
                               lambda state: state.has("Shrine Page", player),
                                                         region_rank = 8)
     setup_region_and_entrance(multiworld, player, "Steamship", "World 1 Access", access_rule = \
-                              lambda state: state.has("Steamship Key", player) and has_magic_and_physical_jobs(player, state),
+                              lambda state: state.has("Steamship Key", player),
                                                         region_rank = 3)
     setup_region_and_entrance(multiworld, player, "Surgate Castle", "World 2 Access", access_rule = None,
                               region_rank = 6)
@@ -201,7 +195,7 @@ def create_regions(multiworld, player: int):
     setup_region_and_entrance(multiworld, player, "Walse Meteor", "World 1 Access", access_rule = None,
                               region_rank = 2)
     setup_region_and_entrance(multiworld, player, "Walse Tower", "World 1 Access", access_rule = 
-                              lambda state: state.has("Walse Tower Key", player) and has_magic_and_physical_jobs(player, state),
+                              lambda state: state.has("Walse Tower Key", player),
                                                         region_rank = 2)
     setup_region_and_entrance(multiworld, player, "Walse Tower Sunken", "World 3 Access", access_rule = 
                               lambda state: state.has("Submarine Key", player),

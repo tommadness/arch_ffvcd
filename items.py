@@ -117,7 +117,6 @@ def create_world_events(world):
         new_event_loc.place_locked_item(new_event_item)
 
 def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations = None):
-    
     mib_items_to_place = []
     mib_item_pool = []
     mib_key_item_excludes = []
@@ -135,7 +134,7 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
         
         mib_item_data = dict({(i, item_table[i]) for i in item_table \
                               if(ITEM_CODE_MIB_REWARD in item_table[i].groups or \
-                                (world.options.trapped_chests_settings == 1 and ITEM_CODE_MIB_REWARD_PROG in item_table[i].groups\
+                                (world.options.trapped_chests_settings == 1 and ITEM_CODE_MIB_REWARD_PROG in item_table[i].groups \
                                   and world.options.progression_checks != 0))})
         sorted_list = sorted(mib_item_data.items())
         sorted_dict = {}
@@ -178,6 +177,23 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
         if job_name in world.options.jobs_included:
             initial_job_list.append(job_selection_dict[job_name])
     world.random.shuffle(initial_job_list)
+    while True:
+        if (initial_job_list[-1] in [JOB_CODE_KNIGHT,JOB_CODE_MONK,JOB_CODE_THIEF,JOB_CODE_DRAGOON,JOB_CODE_NINJA,
+                                   JOB_CODE_SAMURAI,JOB_CODE_BERSERKER,JOB_CODE_HUNTER,JOB_CODE_MYSTIC_KNIGHT,
+                                   JOB_CODE_TRAINER,JOB_CODE_CHEMIST,JOB_CODE_GEOMANCER,JOB_CODE_BARD,JOB_CODE_DANCER] \
+                                   and initial_job_list[-2] in [JOB_CODE_WHITE_MAGE,JOB_CODE_BLACK_MAGE,JOB_CODE_TIME_MAGE,
+                                   JOB_CODE_SUMMONER,JOB_CODE_BLUE_MAGE,JOB_CODE_RED_MAGE]) or \
+                                   (initial_job_list[-1] in [JOB_CODE_WHITE_MAGE,JOB_CODE_BLACK_MAGE,JOB_CODE_TIME_MAGE,
+                                   JOB_CODE_SUMMONER,JOB_CODE_BLUE_MAGE,JOB_CODE_RED_MAGE] \
+                                   and initial_job_list[-2] in [JOB_CODE_KNIGHT,JOB_CODE_MONK,JOB_CODE_THIEF,JOB_CODE_DRAGOON,
+                                   JOB_CODE_NINJA,JOB_CODE_SAMURAI,JOB_CODE_BERSERKER,JOB_CODE_HUNTER,JOB_CODE_MYSTIC_KNIGHT,
+                                   JOB_CODE_TRAINER,JOB_CODE_CHEMIST,JOB_CODE_GEOMANCER,JOB_CODE_BARD,JOB_CODE_DANCER]):
+            early_crystal = initial_job_list[-2]
+            break
+        else:
+            world.random.shuffle(initial_job_list)
+            
+            
     # This method of assignment guarantees that new memory is allocated for the shuffled list 
     # instead of initial job list and shuffled job list pointing to the same memory
     for job in initial_job_list:
@@ -201,7 +217,6 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
     # add crystals only if four job not enabled
     ###############
     else:
-        
         # first choose starting crystal
         starting_job_groups.append(shuffled_job_list.pop())
         starting_crystals = [i for i in item_table if ITEM_CODE_CRYSTALS in item_table[i].groups \
@@ -213,12 +228,13 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
             available_job_groups.append(shuffled_job_list.pop())
         jobs_to_place = [i for i in item_table if ITEM_CODE_CRYSTALS in item_table[i].groups \
                           and any(y in available_job_groups for y in item_table[i].groups)] 
-        
         for item_name in [i for i in item_table if ITEM_CODE_CRYSTALS in item_table[i].groups]:
             if item_name in jobs_to_place:
                 item_data = item_table[item_name]
                 new_item = create_item(item_name, item_data.classification, item_data.id, \
                                        world.player, item_data.groups)
+                if early_crystal in item_data.groups:
+                    world.multiworld.early_items[world.player][item_name] = 1
                 placed_items.append(new_item)
         
     ###############
@@ -323,6 +339,9 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
         placed_job_group_list = list(set(placed_job_group_list))
 
     magic_exlude_list = []
+    if world.options.disable_tier_1_magic and world.options.disable_tier_2_magic and world.options.disable_tier_3_magic:
+        raise Exception("Must include at least one tier of magic. Please ajust settings.")
+
     if world.options.disable_tier_1_magic:
         magic_exlude_list.append(MAGIC_CODE_TIER_1)
     if world.options.disable_tier_2_magic:

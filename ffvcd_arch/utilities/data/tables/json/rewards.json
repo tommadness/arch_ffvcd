@@ -5400,7 +5400,7 @@
         "world": 3.0
     },
     "361": {
-        "address": "C0FBB5",
+        "address": "C0FBF0",
         "original_reward": "New",
         "area": "Rift (2 Tablets)",
         "description": "Calofisteri",
@@ -5410,12 +5410,12 @@
         "required_key_items": "['1st Tablet', '2nd Tablet']",
         "required_key_items_lock1": "['Adamantite', 'Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet']",
         "required_key_items_lock2": "['Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet']",
-        "exdeath_address": "90",
+        "exdeath_address": "A0",
         "hint_tags": "['rift']",
         "world": 3.0
     },
     "362": {
-        "address": "C0FBB7",
+        "address": "C0FBF2",
         "original_reward": "New",
         "area": "Rift (3 Tablets)",
         "description": "Apanda",
@@ -5425,12 +5425,12 @@
         "required_key_items": "['1st Tablet', '2nd Tablet', '3rd Tablet]",
         "required_key_items_lock1": "['Adamantite', 'Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet]",
         "required_key_items_lock2": "['Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet]",
-        "exdeath_address": "91",
+        "exdeath_address": "A1",
         "hint_tags": "['rift']",
         "world": 3.0
     },
     "363": {
-        "address": "C0FBB9",
+        "address": "C0FBF4",
         "original_reward": "New",
         "area": "Rift (3 Tablets)",
         "description": "Apocalypse",
@@ -5440,12 +5440,12 @@
         "required_key_items": "['1st Tablet', '2nd Tablet', '3rd Tablet]",
         "required_key_items_lock1": "['Adamantite', 'Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet]",
         "required_key_items_lock2": "['Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet]",
-        "exdeath_address": "92",
+        "exdeath_address": "A2",
         "hint_tags": "['rift']",
         "world": 3.0
     },
     "364": {
-        "address": "C0FBBB",
+        "address": "C0FBF6",
         "original_reward": "New",
         "area": "Rift (3 Tablets)",
         "description": "Catastroph",
@@ -5455,12 +5455,12 @@
         "required_key_items": "['1st Tablet', '2nd Tablet', '3rd Tablet]",
         "required_key_items_lock1": "['Adamantite', 'Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet]",
         "required_key_items_lock2": "['Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet]",
-        "exdeath_address": "93",
+        "exdeath_address": "A3",
         "hint_tags": "['rift']",
         "world": 3.0
     },
     "365": {
-        "address": "C0FBBC",
+        "address": "C0FBF8",
         "original_reward": "New",
         "area": "Rift (4 Tablets)",
         "description": "Halicarnaso",
@@ -5470,12 +5470,12 @@
         "required_key_items": "['1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
         "required_key_items_lock1": "['Adamantite', 'Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
         "required_key_items_lock2": "['Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
-        "exdeath_address": "94",
+        "exdeath_address": "A4",
         "hint_tags": "['rift']",
         "world": 3.0
     },
     "366": {
-        "address": "C0FBBD",
+        "address": "C0FBFA",
         "original_reward": "New",
         "area": "Rift (4 Tablets)",
         "description": "Twintania",
@@ -5485,12 +5485,12 @@
         "required_key_items": "['1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
         "required_key_items_lock1": "['Adamantite', 'Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
         "required_key_items_lock2": "['Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
-        "exdeath_address": "95",
+        "exdeath_address": "A5",
         "hint_tags": "['rift']",
         "world": 3.0
     },
     "367": {
-        "address": "C0FBBE",
+        "address": "C0FBFC",
         "original_reward": "New",
         "area": "Void",
         "description": "Necrofobia",
@@ -5500,7 +5500,7 @@
         "required_key_items": "['1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
         "required_key_items_lock1": "['Adamantite', 'Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
         "required_key_items_lock2": "['Anti Barrier', 'Bracelet', '1st Tablet', '2nd Tablet', '3rd Tablet, '4th Tablet']",
-        "exdeath_address": "96",
+        "exdeath_address": "A6",
         "hint_tags": "['rift']",
         "world": 3.0
     }

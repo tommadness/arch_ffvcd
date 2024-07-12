@@ -1512,7 +1512,7 @@
         "note": null
     },
     "361": {
-        "address": "C0FBB5",
+        "address": "C0FBF0",
         "original_reward": "Boss",
         "area": "Rift (2 Tablets)",
         "description": "Calofisteri",
@@ -1526,7 +1526,7 @@
         "note": null
     },
     "362": {
-        "address": "C0FBB7",
+        "address": "C0FBF2",
         "original_reward": "Boss",
         "area": "Rift (3 Tablets)",
         "description": "Apanda",
@@ -1540,7 +1540,7 @@
         "note": null
     },
     "363": {
-        "address": "C0FBB9",
+        "address": "C0FBF4",
         "original_reward": "Boss",
         "area": "Rift (3 Tablets)",
         "description": "Apocalypse",
@@ -1554,7 +1554,7 @@
         "note": null
     },
     "364": {
-        "address": "C0FBBB",
+        "address": "C0FBF6",
         "original_reward": "Boss",
         "area": "Rift (3 Tablets)",
         "description": "Catastroph",
@@ -1568,7 +1568,7 @@
         "note": null
     },
     "365": {
-        "address": "C0FBBC",
+        "address": "C0FBF8",
         "original_reward": "Boss",
         "area": "Rift (4 Tablets)",
         "description": "Halicarnaso",
@@ -1582,7 +1582,7 @@
         "note": "check"
     },
     "366": {
-        "address": "C0FBBD",
+        "address": "C0FBFA",
         "original_reward": "Boss",
         "area": "Rift (4 Tablets)",
         "description": "Twintania",
@@ -1596,7 +1596,7 @@
         "note": null
     },
     "367": {
-        "address": "C0FBBE",
+        "address": "C0FBFC",
         "original_reward": "Boss",
         "area": "Void",
         "description": "Necrofobia",

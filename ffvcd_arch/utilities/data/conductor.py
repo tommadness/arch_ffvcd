@@ -2472,6 +2472,7 @@ class Conductor():
                 logger.debug("Skipping Exdeath at C0FFFF")
                 continue
             
+            
             arch_player = arch_item_data['loc_player']
             arch_item_name = arch_item_data['loc_name']
             arch_item_progression = arch_item_data['loc_progression']

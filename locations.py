@@ -13,7 +13,10 @@ LOC_TYPE_TRACKER_EVENT = 4
 class LocationData:
     def __init__(self, name, address = None, parent = None, area = None, location_type="", type="Item"):
         self.name = name
-        self.address = address + loc_id_start
+        if location_type == LOC_TYPE_TRACKER_EVENT:
+            self.address = None
+        else:
+            self.address = address + loc_id_start
         self.address_hex = address
         self.parent = parent
         self.event = False
@@ -434,16 +437,16 @@ LocationData("Istory Falls - Leviathan (Boss)", address = 0xC0FBAE, area = "Isto
 LocationData("Solitary Island - Stalker (Boss)", address = 0xC0FBB0, area = "Solitary Island",location_type=LOC_TYPE_KEY),
 LocationData("Walse Tower Sunken - GoGo (Boss)", address = 0xC0FBB2, area = "Walse Tower Sunken",location_type=LOC_TYPE_KEY),
 LocationData("North Mountain (World 3) - Bahamut (Boss)", address = 0xC0FBB4, area = "North Mountain (World 3)", location_type=LOC_TYPE_KEY),
-LocationData("Rift (2 Tablets) - Calofisteri (Boss)", address = 0xC0FBB5, area =  "Rift (2 Tablets)", location_type=LOC_TYPE_KEY),
-LocationData("Rift (3 Tablets) - Apanda (Boss)", address = 0xC0FBB7, area =  "Rift (3 Tablets)", location_type=LOC_TYPE_KEY),
-LocationData("Rift (3 Tablets) - Apocalypse (Boss)", address = 0xC0FBB9, area =  "Rift (3 Tablets)", location_type=LOC_TYPE_KEY),
-LocationData("Rift (3 Tablets) - Catastroph (Boss)", address = 0xC0FBBB, area =  "Rift (3 Tablets)", location_type=LOC_TYPE_KEY),
-LocationData("Rift (4 Tablets) - Halicarnaso (Boss)", address = 0xC0FBBC, area =  "Rift (4 Tablets)", location_type=LOC_TYPE_KEY),
-LocationData("Rift (4 Tablets) - Twintania (Boss)", address = 0xC0FBBD, area =  "Rift (4 Tablets)", location_type=LOC_TYPE_KEY),
-LocationData("Void - Necrofobia (Boss)", address = 0xC0FBBE, area = "Void", location_type=LOC_TYPE_CHEST),
+LocationData("Rift (2 Tablets) - Calofisteri (Boss)", address = 0xC0FBF0, area =  "Rift (2 Tablets)", location_type=LOC_TYPE_KEY),
+LocationData("Rift (3 Tablets) - Apanda (Boss)", address = 0xC0FBF2, area =  "Rift (3 Tablets)", location_type=LOC_TYPE_KEY),
+LocationData("Rift (3 Tablets) - Apocalypse (Boss)", address = 0xC0FBF4, area =  "Rift (3 Tablets)", location_type=LOC_TYPE_KEY),
+LocationData("Rift (3 Tablets) - Catastroph (Boss)", address = 0xC0FBF6, area =  "Rift (3 Tablets)", location_type=LOC_TYPE_KEY),
+LocationData("Rift (4 Tablets) - Halicarnaso (Boss)", address = 0xC0FBF8, area =  "Rift (4 Tablets)", location_type=LOC_TYPE_KEY),
+LocationData("Rift (4 Tablets) - Twintania (Boss)", address = 0xC0FBFA, area =  "Rift (4 Tablets)", location_type=LOC_TYPE_KEY),
+LocationData("Void - Necrofobia (Boss)", address = 0xC0FBFC, area = "Void", location_type=LOC_TYPE_KEY),
 LocationData("Piano (Tule)", address = 0xC0FFF6, area = "Tule", location_type=LOC_TYPE_TRACKER_EVENT),
 LocationData("Piano (Carwen)", address = 0xC0FFF7, area = "Carwen", location_type=LOC_TYPE_TRACKER_EVENT),
-LocationData("Piano (Karnak)", address = 0xC0FFF8, area = "Karnak", location_type=LOC_TYPE_TRACKER_EVENT),
+LocationData("Piano (Karnak)", address = 0xC0FFF8, area = "Karnak (On Fire)", location_type=LOC_TYPE_TRACKER_EVENT),
 LocationData("Piano (Jacole)", address = 0xC0FFF9, area = "Jacole", location_type=LOC_TYPE_TRACKER_EVENT),
 LocationData("Piano (Crescent)", address = 0xC0FFFA, area = "Crescent Island", location_type=LOC_TYPE_TRACKER_EVENT),
 LocationData("Piano (Mua)", address = 0xC0FFFB, area = "Mua", location_type=LOC_TYPE_TRACKER_EVENT),

@@ -142,7 +142,7 @@ class FFVCDWorld(World):
                     i.mib_flag = True
                     self.chosen_mib_locations.append(i)
                     
-        self.starting_crystals, placed_items, self.mib_items_to_place = create_world_items(self, trapped_chests_flag =\
+        self.starting_crystals, self.placed_items, self.mib_items_to_place = create_world_items(self, trapped_chests_flag =\
                                                                   self.options.trapped_chests,\
                                                                   chosen_mib_locations = self.chosen_mib_locations)
         
@@ -150,9 +150,9 @@ class FFVCDWorld(World):
         ITEM_CODE_CRYSTALS = '3'
         ITEM_CODE_MAGIC = '8'
 
-        for magic in [i for i in placed_items if ITEM_CODE_MAGIC in getattr(i, "groups")]: self.placed_magic.append(getattr(magic,"name"))
-        for ability in [i for i in placed_items if ITEM_CODE_ABILITIES in getattr(i, "groups")]: self.placed_abilities.append(getattr(ability,"name"))
-        for crystal in [i for i in placed_items if ITEM_CODE_CRYSTALS in getattr(i, "groups")]: self.placed_crystals.append(getattr(crystal,"name"))
+        for magic in [i for i in self.placed_items if ITEM_CODE_MAGIC in getattr(i, "groups")]: self.placed_magic.append(getattr(magic,"name"))
+        for ability in [i for i in self.placed_items if ITEM_CODE_ABILITIES in getattr(i, "groups")]: self.placed_abilities.append(getattr(ability,"name"))
+        for crystal in [i for i in self.placed_items if ITEM_CODE_CRYSTALS in getattr(i, "groups")]: self.placed_crystals.append(getattr(crystal,"name"))
 
         self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player).access_rule(\
         lambda state: state.has("Catch Ability", self.player, 1) or state.has("Trainer Crystal", self.player, 1))
@@ -224,7 +224,6 @@ class FFVCDWorld(World):
             state = self.multiworld.get_all_state(False)
             fill_restrictive(self.multiworld, state, self.chosen_mib_locations, self.mib_items_to_place,
                                single_player_placement=True, lock=True, allow_excluded=True)
-        
 
     def create_regions(self):
         create_regions(self.multiworld, self.player)
