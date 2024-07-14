@@ -217,6 +217,7 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
     # add crystals only if four job not enabled
     ###############
     else:
+        first = 0
         # first choose starting crystal
         starting_job_groups.append(shuffled_job_list.pop())
         starting_crystals = [i for i in item_table if ITEM_CODE_CRYSTALS in item_table[i].groups \
@@ -442,7 +443,7 @@ item_table = {
     "Summoner Crystal" : ItemData(112, ItemClassification.useful, [ITEM_CODE_UNIQUE, ITEM_CODE_CRYSTALS,JOB_CODE_SUMMONER]),
     "BlueMage Crystal" : ItemData(113, ItemClassification.useful, [ITEM_CODE_UNIQUE, ITEM_CODE_CRYSTALS,JOB_CODE_BLUE_MAGE]),
     "RedMage Crystal" : ItemData(114, ItemClassification.useful, [ITEM_CODE_UNIQUE, ITEM_CODE_CRYSTALS,JOB_CODE_RED_MAGE]),
-    "Trainer Crystal" : ItemData(115, ItemClassification.useful, [ITEM_CODE_UNIQUE, ITEM_CODE_CRYSTALS,JOB_CODE_TRAINER]),
+    "Trainer Crystal" : ItemData(115, ItemClassification.progression, [ITEM_CODE_UNIQUE, ITEM_CODE_CRYSTALS,JOB_CODE_TRAINER]),
     "Chemist Crystal" : ItemData(116, ItemClassification.useful, [ITEM_CODE_UNIQUE, ITEM_CODE_CRYSTALS,JOB_CODE_CHEMIST]),
     "Geomancer Crystal" : ItemData(117, ItemClassification.useful, [ITEM_CODE_UNIQUE, ITEM_CODE_CRYSTALS,JOB_CODE_GEOMANCER]),
     "Bard Crystal" : ItemData(118, ItemClassification.useful, [ITEM_CODE_UNIQUE, ITEM_CODE_CRYSTALS,JOB_CODE_BARD]),
@@ -598,7 +599,7 @@ item_table = {
     "Analyze Ability" : ItemData(419, ItemClassification.useful, [ITEM_CODE_UNIQUE,ITEM_CODE_ABILITIES,JOB_CODE_BLUE_MAGE]),
     "Tame Ability" : ItemData(420, ItemClassification.useful, [ITEM_CODE_UNIQUE,ITEM_CODE_ABILITIES,JOB_CODE_TRAINER]),
     "Control Ability" : ItemData(421, ItemClassification.useful, [ITEM_CODE_UNIQUE,ITEM_CODE_ABILITIES,JOB_CODE_TRAINER]),
-    "Catch Ability" : ItemData(422, ItemClassification.useful, [ITEM_CODE_UNIQUE,ITEM_CODE_ABILITIES,JOB_CODE_TRAINER]),
+    "Catch Ability" : ItemData(422, ItemClassification.progression, [ITEM_CODE_UNIQUE,ITEM_CODE_ABILITIES,JOB_CODE_TRAINER]),
     "Mix Ability" : ItemData(423, ItemClassification.useful, [ITEM_CODE_UNIQUE,ITEM_CODE_ABILITIES,JOB_CODE_CHEMIST]),
     "Drink Ability" : ItemData(424, ItemClassification.useful, [ITEM_CODE_UNIQUE,ITEM_CODE_ABILITIES,JOB_CODE_CHEMIST]),
     "Pray Ability" : ItemData(425, ItemClassification.useful, [ITEM_CODE_UNIQUE,ITEM_CODE_ABILITIES,JOB_CODE_CHEMIST]),

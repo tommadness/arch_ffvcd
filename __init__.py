@@ -3,6 +3,7 @@ import threading
 import base64
 from BaseClasses import MultiWorld, Tutorial, ItemClassification
 from worlds.AutoWorld import World, WebWorld
+from worlds.generic.Rules import add_rule, add_item_rule
 from .items import item_table, item_groups, create_item, create_world_items, arch_item_offset, \
     WORLD2_ACCESS_ITEM_ID, WORLD3_ACCESS_ITEM_ID, ITEM_CODE_GIL
 from .locations import location_data, loc_id_start
@@ -154,23 +155,28 @@ class FFVCDWorld(World):
         for ability in [i for i in self.placed_items if ITEM_CODE_ABILITIES in getattr(i, "groups")]: self.placed_abilities.append(getattr(ability,"name"))
         for crystal in [i for i in self.placed_items if ITEM_CODE_CRYSTALS in getattr(i, "groups")]: self.placed_crystals.append(getattr(crystal,"name"))
 
-        self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player).access_rule(\
-        lambda state: state.has("Catch Ability", self.player, 1) or state.has("Trainer Crystal", self.player, 1))
+        if "Trainer Crystal" not in self.starting_crystals:
+            if "Catch Ability" in self.placed_abilities or "Trainer Crystal" in self.placed_crystals:
+                add_rule(self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player),
+                lambda state: state.has("Catch Ability", self.player, 1) or state.has("Trainer Crystal", self.player, 1))
+            else:
+                add_item_rule(self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player), \
+                lambda item: not (item.classification & (ItemClassification.progression or ItemClassification.useful)))
 
-        self.multiworld.get_location("Crescent Island - Power Song from Crescent Town (Power)", self.player).access_rule(\
+        add_rule(self.multiworld.get_location("Crescent Island - Power Song from Crescent Town (Power)", self.player),
         lambda state: state.has("Adamantite", self.player, 1) or state.has("World 2 Access (Item)", self.player, 1))
 
-        self.multiworld.get_location("Piano (Mua)", self.player).access_rule(\
-        lambda state: state.has("Adamantite", self.player, 1) or state.has("World 2 Access (Item)", self.player, 1))
+        add_rule(self.multiworld.get_location("Piano (Mua)", self.player), \
+        lambda state: state.can_reach("Mua", self.player, 1))
 
-        self.multiworld.get_location("Piano (Rugor)", self.player).access_rule(\
-        lambda state: state.has("Adamantite", self.player, 1) or state.has("World 2 Access (Item)", self.player, 1))
+        add_rule(self.multiworld.get_location("Piano (Rugor)", self.player),
+        lambda state: state.can_reach("Rugor", self.player, 1))
 
-        self.multiworld.get_location("Crescent Island - Hero Song from Crescent Town (Hero)", self.player).access_rule(\
-        lambda state: state.has("World 3 Access (Item)", self.player, 1) and state.has("Mirage Radar", self.player, 1))
+        add_rule(self.multiworld.get_location("Crescent Island - Hero Song from Crescent Town (Hero)", self.player), \
+        lambda state: state.can_reach("Mirage Village", self.player, 1))
 
-        self.multiworld.get_location("Piano (Mirage)", self.player).access_rule(\
-        lambda state: state.has("World 3 Access (Item)", self.player, 1) and state.has("Mirage Radar", self.player, 1))
+        add_rule(self.multiworld.get_location("Piano (Mirage)", self.player), \
+        lambda state: state.can_reach("Mirage Village", self.player, 1))
  
     def parse_options_for_conductor(self):
         # this sets up a config file from archipelago's options

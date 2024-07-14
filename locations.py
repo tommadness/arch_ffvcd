@@ -13,10 +13,8 @@ LOC_TYPE_TRACKER_EVENT = 4
 class LocationData:
     def __init__(self, name, address = None, parent = None, area = None, location_type="", type="Item"):
         self.name = name
-        if location_type == LOC_TYPE_TRACKER_EVENT:
-            self.address = None
-        else:
-            self.address = address + loc_id_start
+    
+        self.address = address + loc_id_start
         self.address_hex = address
         self.parent = parent
         self.event = False
