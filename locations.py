@@ -2,6 +2,7 @@ from BaseClasses import Location
 from BaseClasses import ItemClassification
 from worlds.generic.Rules import add_item_rule
 from .items import arch_item_offset
+from .options import ffvcd_options
 loc_id_start = 342000000
 
 LOC_TYPE_CHEST = 1
@@ -46,12 +47,12 @@ class FFVCDLocation(Location):
             if location_data.location_type != LOC_TYPE_KEY:
                 add_item_rule(self, lambda item: not (item.classification & ItemClassification.progression))
 
-
-        # kuzar shouldn't have key items because of the permanent choice of using tablets
-        #if location_data.area in ["Kuzar"]:
-        #    add_item_rule(self, lambda item: not (item.classification & ItemClassification.progression))
+        if not ffvcd_options.kuzar_progression and location_data.area in ["Kuzar"]:
+            add_item_rule(self, lambda item: not (item.classification & ItemClassification.progression))
         # other player's progression can land here or other key items relevant to other's progression just not the FFV player's progression
         # so there shouldn't be a reason to block this location as it already requires all 4 tablets in the region rules
+        if not ffvcd_options.rift_and_void_progression and location_data.area in ["Rift (1 Tablet)","Rift (2 Tablets)","Rift (3 Tablets)","Rift (4 Tablets)","Void"]:
+            add_item_rule(self, lambda item: not (item.classification & ItemClassification.progression))
 
             
 

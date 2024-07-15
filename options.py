@@ -213,6 +213,22 @@ class DisableTier3Magic(Toggle):
     """
     display_name = "Disable Tier 3 Magic"
 
+class KuzarProgression(Toggle):
+    """
+    When enabled, allows Kuzar to have progression items. 
+
+    Items in Kuzar logically require all 4 tablets.
+    """
+    display_name = "Enable Kuzar Progression"
+
+class RiftAndVoidProgression(Toggle):
+    """
+    When enabled, allows Kuzar to have progression items. 
+
+    Items in Kuzar logically require all 4 tablets.
+    """
+    display_name = "Enable Rift and Void Progression"
+
 class LennaName(FreeText):
     """
     Enter a name for Lenna. 
@@ -268,6 +284,8 @@ class ffvcd_options(PerGameCommonOptions):
     disable_tier_1_magic: DisableTier1Magic
     disable_tier_2_magic: DisableTier2Magic
     disable_tier_3_magic: DisableTier3Magic
+    kuzar_progression: KuzarProgression
+    rift_and_void_progression: RiftAndVoidProgression
     lenna_name: LennaName
     galuf_name: GalufName
     krile_name: KrileName
