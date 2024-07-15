@@ -928,7 +928,8 @@ stx $af
 
 
 ChestMIBTextFinish:
-lda #$00  
+lda #$00
+sta !unusedram2
 sta !unusedram3 ; reset this address so others don't trip the flag
 jml $c00eb2
 
@@ -965,6 +966,7 @@ JML $c00e93
 
 ChestBranchFinish2:
 lda #$00  
+sta !unusedram2
 sta !unusedram3 ; reset this address so others don't trip the flag
 JML $c00ead
 
@@ -1006,7 +1008,8 @@ cmp #$01
 beq ChangeToMagicReward
 cmp #$16
 beq GiveKeyItemReward
-lda #$00  
+lda #$00
+sta !unusedram2
 sta !unusedram3 ; reset this address so others don't trip the flag
 JML $c00ead
 
@@ -1018,6 +1021,7 @@ JML !ADDRESS_chesthook_new_reward_had_prior_item3
 GiveKeyItemReward:
 lda #$00
 sta !unusedram1
+sta !unusedram2
 sta !unusedram3 ; reset this address so others don't trip the flag
 JSL BranchToKeyItemReward
 JML $c00e74
@@ -1081,12 +1085,14 @@ ldx #$0004
 ChestBranchFinish4:
 lda #$00
 sta !unusedram1
+sta !unusedram2
 sta !unusedram3 ; reset this address so others don't trip the flag
 JML $c00e72
 
 MIBGiveJobAndFinish:
 lda #$00
 sta !unusedram1
+sta !unusedram2
 sta !unusedram3 ; reset this address so others don't trip the flag
 JSL BranchToJobReward
 JML $c00e74
@@ -1094,6 +1100,7 @@ JML $c00e74
 GiveAbilityRewardAndFinish:
 lda #$00
 sta !unusedram1
+sta !unusedram2
 sta !unusedram3 ; reset this address so others don't trip the flag
 JSL BranchToAbilityReward
 JML $c00e74
