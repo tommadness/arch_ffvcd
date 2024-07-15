@@ -37,8 +37,8 @@ class WorldLock(Choice):
 
 class ProgressionChecks(Choice):
     """Determines where progression checks are in the game for the multiworld.
-    1: All boss locations (before the Rift only) are valid checks for progression
-    2: All bosses (before the Rift only), all events & all chests are valid checks for progression
+    1: All boss locations are valid checks for progression
+    2: All bosses, all events, & all chests are valid checks for progression
     """
     display_name = "Progression Checks"
     option_bosses = 0
