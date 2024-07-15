@@ -223,9 +223,8 @@ class KuzarProgression(Toggle):
 
 class RiftAndVoidProgression(Toggle):
     """
-    When enabled, allows Kuzar to have progression items. 
+    When enabled, allows areas within the Rift and Void to have progression. 
 
-    Items in Kuzar logically require all 4 tablets.
     """
     display_name = "Enable Rift and Void Progression"
 
