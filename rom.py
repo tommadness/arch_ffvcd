@@ -111,8 +111,8 @@ class LocalRom(object):
 
 
 
-def patch_rom(world, rom, player):
-    rom.name = bytearray(f'K7{__version__.replace(".", "")[0:3]}_{player}_{world.seed:11}\0', 'utf8')[:21]
+def patch_rom(multiworld, rom, player):
+    rom.name = bytearray(f'K7{__version__.replace(".", "")[0:3]}_{player}_{multiworld.seed:11}\0', 'utf8')[:21]
     rom.name.extend([0] * (21 - len(rom.name)))
     rom.write_bytes(0x7FC0, rom.name)
     
