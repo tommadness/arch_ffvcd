@@ -27,7 +27,7 @@ class LocationData:
 class FFVCDLocation(Location):
     game = "ffvcd"
 
-    def __init__(self, player, location_data, parent=None, progression_checks_setting = 0):
+    def __init__(self, player, location_data, parent=None, progression_checks_setting = 0, kuzar_progression = False, rift_and_void_progression = False):
         super(FFVCDLocation, self).__init__(
             player, location_data.name,
             location_data.address,
@@ -47,11 +47,11 @@ class FFVCDLocation(Location):
             if location_data.location_type != LOC_TYPE_KEY:
                 add_item_rule(self, lambda item: not (item.classification & ItemClassification.progression))
 
-        if not ffvcd_options.kuzar_progression and location_data.area in ["Kuzar"]:
+        if not kuzar_progression and location_data.area in ["Kuzar"]:
             add_item_rule(self, lambda item: not (item.classification & ItemClassification.progression))
         # other player's progression can land here or other key items relevant to other's progression just not the FFV player's progression
         # so there shouldn't be a reason to block this location as it already requires all 4 tablets in the region rules
-        if not ffvcd_options.rift_and_void_progression and location_data.area in ["Rift (1 Tablet)","Rift (2 Tablets)","Rift (3 Tablets)","Rift (4 Tablets)","Void"]:
+        if not rift_and_void_progression and location_data.area in ["Rift (1 Tablet)","Rift (2 Tablets)","Rift (3 Tablets)","Rift (4 Tablets)","Void"]:
             add_item_rule(self, lambda item: not (item.classification & ItemClassification.progression))
 
             
@@ -71,7 +71,9 @@ class FFVCDLocation(Location):
 
 def create_location(world, player, location_data, parent=None):
     progression_checks_setting = world.worlds[player].options.progression_checks.value
-    return_location = FFVCDLocation(player, location_data, parent, progression_checks_setting)
+    kuzar_progression = world.worlds[player].options.kuzar_progression.value
+    rift_and_void_progression = world.worlds[player].options.rift_and_void_progression.value
+    return_location = FFVCDLocation(player, location_data, parent, progression_checks_setting, kuzar_progression, rift_and_void_progression)
     return return_location
 
 location_data = [
