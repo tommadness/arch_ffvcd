@@ -173,7 +173,7 @@ class FFVCDWorld(World):
                 add_rule(self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player),
                 lambda state: state.has("Catch Ability", self.player, 1) or state.has("Trainer Crystal", self.player, 1))
             else:
-                add_item_rule(self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player), \
+                add_rule(self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player), \
                 lambda item: not (item.classification & (ItemClassification.progression or ItemClassification.useful)) and item.player == self.player)
 
         add_rule(self.multiworld.get_location("Crescent Island - Power Song from Crescent Town (Power)", self.player),
