@@ -173,23 +173,23 @@ class FFVCDWorld(World):
                 add_rule(self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player),
                 lambda state: state.has("Catch Ability", self.player, 1) or state.has("Trainer Crystal", self.player, 1))
             else:
-                add_rule(self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player), \
+                add_item_rule(self.multiworld.get_location("Kelb - CornaJar at Kelb (CornaJar)", self.player), \
                 lambda item: not (item.classification & (ItemClassification.progression or ItemClassification.useful)) and item.player == self.player)
 
         add_rule(self.multiworld.get_location("Crescent Island - Power Song from Crescent Town (Power)", self.player),
         lambda state: state.has("Adamantite", self.player, 1) or state.has("World 2 Access (Item)", self.player, 1))
 
         add_rule(self.multiworld.get_location("Piano (Mua)", self.player), \
-        lambda state: state.can_reach("Mua", self.player, 1))
+        lambda state: state.can_reach("Mua", "Region", self.player))
 
         add_rule(self.multiworld.get_location("Piano (Rugor)", self.player),
-        lambda state: state.can_reach("Rugor", self.player, 1))
+        lambda state: state.can_reach("Rugor", "Region", self.player))
 
         add_rule(self.multiworld.get_location("Crescent Island - Hero Song from Crescent Town (Hero)", self.player), \
-        lambda state: state.can_reach("Mirage Village", self.player, 1))
+        lambda state: state.can_reach("Mirage Village", "Region", self.player))
 
         add_rule(self.multiworld.get_location("Piano (Mirage)", self.player), \
-        lambda state: state.can_reach("Mirage Village", self.player, 1))
+        lambda state: state.can_reach("Mirage Village", "Region", self.player))
  
     def parse_options_for_conductor(self):
         # this sets up a config file from archipelago's options
