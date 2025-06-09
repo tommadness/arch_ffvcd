@@ -193,7 +193,7 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
             break
         else:
             world.random.shuffle(initial_job_list)
- """
+"""
 #
 #     # This method of assignment guarantees that new memory is allocated for the shuffled list
 #     # instead of initial job list and shuffled job list pointing to the same memory
