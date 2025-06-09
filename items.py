@@ -177,7 +177,7 @@ def create_world_items(world, trapped_chests_flag = False, chosen_mib_locations 
         if job_name in world.options.jobs_included:
             initial_job_list.append(job_selection_dict[job_name])
     world.random.shuffle(initial_job_list)
-    """
+"""
     while True:
         if (initial_job_list[-1] in [JOB_CODE_KNIGHT,JOB_CODE_MONK,JOB_CODE_THIEF,JOB_CODE_DRAGOON,JOB_CODE_NINJA,
                                    JOB_CODE_SAMURAI,JOB_CODE_BERSERKER,JOB_CODE_HUNTER,JOB_CODE_MYSTIC_KNIGHT,
